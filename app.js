@@ -12,13 +12,23 @@ import morgan from 'morgan';
 import expressValidator from 'express-validator';
 import cors from 'cors';
 import orderRouter from './routes/order.js';
+import path from 'path';
 
 const app = express();
 dotenv.config();
 //db
-mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true})
+mongoose
+.connect(process.env.CONNECTION_URL, {useNewUrlParser: true})
 .then(()=>{console.log('DB connected')});
 mongoose.connection.on('error', (error)=>{console.log(`DB Connection error: ${error}`)});
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+  
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
+  }
 
 //middlewares
 app.use(morgan('dev'));
