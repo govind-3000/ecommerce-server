@@ -8,8 +8,8 @@
     "start": "node app.js"
   },
   "engines": {
-    "node": "6.x",
-    "npm": "16.x"
+    "node": "16.x",
+    "npm": "6.x"
   },
   "keywords": [],
   "author": "",
