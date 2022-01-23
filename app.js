@@ -22,14 +22,6 @@ mongoose
 .then(()=>{console.log('DB connected')});
 mongoose.connection.on('error', (error)=>{console.log(`DB Connection error: ${error}`)});
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-  
-    app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    });
-  }
-
 //middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.json());//to get json data from request body
