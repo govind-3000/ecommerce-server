@@ -23,13 +23,6 @@ mongoose
 .then(()=>{console.log('DB connected')});
 mongoose.connection.on('error', (error)=>{console.log(`DB Connection error: ${error}`)});
 
-//middlewares
-app.use(morgan('dev'));
-app.use(bodyParser.json());//to get json data from request body
-app.use(cookieParser());
-app.use(expressValidator());
-app.use(cors());
-
 app.use((req,res,next)=>{
     res.setHeader('Acces-Control-Allow-Origin','*');
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
@@ -38,6 +31,13 @@ app.use((req,res,next)=>{
 })
 app.use(bodyParser.json({limit:"30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));
+//middlewares
+app.use(morgan('dev'));
+app.use(bodyParser.json());//to get json data from request body
+app.use(cookieParser());
+app.use(expressValidator());
+app.use(cors());
+
 //route middleware
 app.use('/', authRouter);
 app.use('/', userRouter);
