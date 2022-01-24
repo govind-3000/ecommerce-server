@@ -29,7 +29,7 @@ const create = (req, res)=>{
                 });
             }
 
-            product.photo.data = fs.readFileSync(files.photo.filepath);
+            product.photo.data = fs.readFileSync(files.photo.path);
             product.photo.contentType = files.photo.type;
         }
 
