@@ -13,6 +13,7 @@ import expressValidator from 'express-validator';
 import cors from 'cors';
 import orderRouter from './routes/order.js';
 import path from 'path';
+import bodyparser from 'body-parser';
 
 const app = express();
 dotenv.config();
@@ -28,7 +29,8 @@ app.use(bodyParser.json());//to get json data from request body
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
-
+app.use(bodyParser.json({limit:"30mb", extended:true}));
+app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));
 //route middleware
 app.use('/', authRouter);
 app.use('/', userRouter);
