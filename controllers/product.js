@@ -75,7 +75,6 @@ const remove = (req, res)=>{
 const update = (req, res)=>{
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
-
     form.parse(req, (error, fields, files)=>{
         if(error){
             return res.status(400).json({error: 'Image could not be uploaded!'});
@@ -91,7 +90,7 @@ const update = (req, res)=>{
                 });
             }
 
-            product.photo.data = fs.readFileSync(files.photo.filepath);
+            product.photo.data = fs.readFileSync(files.photo.path);
             product.photo.contentType = files.photo.type;
         }
 
