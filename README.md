@@ -1,4 +1,5 @@
 # ecommerce-server
+LIVE - https://ecommerce-client-app.herokuapp.com/
 
 * ShopCat is a full stack e-commerce application it is based on MERN stack, 
 
